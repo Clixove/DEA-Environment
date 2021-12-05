@@ -1,8 +1,6 @@
 # Environment Protection DEA
  DEA Analysis of Environment Protection Investment
 
-The current folder of command line is the software's project root.
-
 ## 1. Background
 
 ## 2. Functions
@@ -16,6 +14,8 @@ BHT-ARIMA:
 SourceHanSerifCN Font: https://github.com/wordshub/free-font#%E6%80%9D%E6%BA%90%E5%AE%8B%E4%BD%93
 
 ## 5. Installation
+
+The current folder of command line is the software's project root.
 
 ### 5.1. Build token files
 

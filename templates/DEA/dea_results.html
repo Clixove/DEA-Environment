@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert justify-content-center">
+        <div class="col-md-8">
+            <p class="lead fw-normal text-center">查看绩效</p>
+            <p class="d-flex justify-content-between">
+                <a href="/task/add-1?index={{ task.id }}">上一步</a>
+                <a href="/task/add-3?index={{ task.id }}">下一步</a>
+            </p>
+            <form id="select-dmu">
+                {{ select_dmu_sheet.as_p }}
+                <div class="text-center"><input type="submit" value="提交" class="btn btn-outline-success"></div>
+            </form>
+            <p>
+                <a role="button" class="text-primary"
+                   onclick="export_html('select-dmu-return', 'dmu_efficients_figure.svg')">下载图片</a>
+                <label style="width: 2ch;"></label>
+                <a href="/dea/download-efficients?index={{ task.id }}">下载全部数据</a>
+            </p>
+            <div id="select-dmu-return" class="text-center"></div>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>
+
+<script>
+    $('#select-dmu').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/dea/draw-efficients',
+            data: $(this).serialize(),
+            success: (response) => {
+                document.getElementById('select-dmu-return').innerHTML = response;
+                scale_svg('select-dmu-return', 600, 0.8);
+                },
+        });
+    });
+</script>

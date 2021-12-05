@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/main">Clixove</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link text-light" href="/task/list">我的分析</a></li>
+            <li class="nav-item dropdown">
+                <div class="nav-link text-light" id="navbar-help" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                    帮助
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="navbar-help">
+                    <li><a class="dropdown-item"></a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="d-flex">
+            {% if request.user.is_authenticated %}
+            <div class="nav-item dropdown">
+                <div class="nav-link text-light" id="navbar-account" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    用户
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="navbar-account">
+                    <li><label class="dropdown-item disabled">{{ request.user.username }}</label></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/admin">管理员</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-outline-light text-nowrap" href="/my_login/delete">登出</a>
+            {% else %}
+            <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modal-login">
+                登入
+            </button>
+
+            <div class="modal fade" id="modal-login" tabindex="-1" aria-labelledby="modal-login-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-login-label">登录</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="/my_login/add" method="post">
+                        <div class="modal-body">
+                            <div id="login-sheet"></div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <input type="submit" class="btn btn-outline-success" value="Start" />
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+            $.ajax({
+                type: 'GET', url: '/my_login/view',
+                success: (response) => {document.getElementById('login-sheet').innerHTML = response},
+            });
+            </script>
+
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+{% if request.GET.message and request.GET.color %}
+<div class="alert alert-{{ request.GET.color }} alert-dismissible fade show mb-0" role="alert">
+    <strong>消息:</strong> {{ request.GET.message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}

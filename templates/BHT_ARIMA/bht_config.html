@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert">
+        <div class="col-md-3 d-flex flex-column justify-content-center">
+            <div class="alert fade show shadow">
+                <p class="text-center"><b>参数规则</b></p>
+                <p>"MDT过程-时间滞后参数"的条件: L+1-τ-d-p-q > 0</p>
+                <p>其中L是时间序列的长度, τ是MDT过程-时间滞后参数, p是MDT过程-时间滞后参数, d是MDT过程-时间滞后参数,
+                q是ARIMA模型-移动平均的长度.</p>
+                <p>d是非负整数, 其它参数都是正整数.</p>
+                <hr>
+                <p class="text-primary">
+                    本软件当前使用逐个样本计算的方式. 如果样本量特别多, 并且起止时间相同, 则需使用批量计算的方式 (尚未开放).
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p class="lead fw-normal text-center">设置BHT-ARIMA模型</p>
+            <p class="d-flex justify-content-between">
+                <a href="/task/add-2?index={{ task.id }}">上一步</a>
+                <a href="/task/add-4?index={{ task.id }}">下一步</a>
+            </p>
+            <form id="bht-arima">
+                {{ config_sheet.as_p }}
+                <div class="text-center">
+                    <input type="submit" value="提交" class="btn btn-outline-success">
+                </div>
+            </form>
+            <div class="alert alert-warning" hidden id="bht-arima-await">
+                已开始运行绩效评价模型, 等待模型运行时既可留在本页, 也可离开软件.
+            </div>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>
+
+<script>
+    $('#bht-arima').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/bht-arima/add',
+            data: $(this).serialize(),
+            success: (redirect_url) => {window.open(redirect_url, '_self')},
+        });
+        document.getElementById('bht-arima-await').hidden = false;
+    });
+</script>

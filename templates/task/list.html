@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert">
+        <div class="col-md-8">
+            <div class="mb-2">
+                <button class="btn btn-outline-success text-nowrap" onclick="window.open('/task/view_add', '_self')">
+                    <b>+</b> 新建分析
+                </button>
+            </div>
+            <div style="overflow-x: auto;">
+            <table class="table table-hover">
+                <thead><tr>
+                    <td>名称</td><td>创建时间</td><td class="text-nowrap">空闲</td><td>进度</td><td>操作</td>
+                </tr></thead>
+                <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td class="text-nowrap">
+                        <a href="/task/add-{{ task.current_step }}?index={{ task.id }}">{{ task.name }}</a>
+                    </td>
+                    <td class="text-nowrap">{{ task.created_time | date:'Y-m-d H:i:j' }}</td>
+                    <td>
+                        {% if task.busy %}
+                        <img src="/static/admin/img/icon-no.svg" alt="False">
+                        {% else %}
+                        <img src="/static/admin/img/icon-yes.svg" alt="True">
+                        {% endif %}
+                    </td>
+                    <td class="text-nowrap">{{ task.current_step_description }}</td>
+                    <td class="text-nowrap">
+                        <a href="/task/delete?index={{ task.id }}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <p class="helptext">点击名称, 以继续查看或编辑.</p>
+        </div>
+        <div class="col-md-4">
+            <div class="btn disabled">错误日志</div>
+            <div style="max-height: 600px; overflow-y: auto;">
+                {% for err in errors %}
+                <div class="alert mb-0">
+                <p>
+                    任务名称: {{ err.task.name }} <br>
+                    发生时间: {{ err.happened_time | date:"Y-m-d H:i:s" }} <br>
+                    发生在步骤: {{ err.current_step_description }} <br>
+                    错误信息: {{ err.error_message }}
+                </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>

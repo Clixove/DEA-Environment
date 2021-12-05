@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert">
+        <div class="col-md-12">
+            <h1 class="my-4 text-center">基于数据包络分析的环境保护支出绩效评价软件</h1>
+        </div>
+    </div>
+    <div class="row alert">
+        <div class="col-md-12 text-center">
+            <div class="btn-group">
+                <button type="button" class="btn btn-lg btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    采集数据
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/static/data_pre_processing/data_pre_processing.html"
+                           target="_blank">
+                        预处理从 CSMAR 数据库获取的数据
+                    </a></li>
+                    <li><a class="dropdown-item"
+                           href="/static/data_pre_processing/Chinese Govt Environment Metrics 2007~2019.xlsx"
+                           target="_blank">
+                        下载样例数据
+                    </a></li>
+                </ul>
+            </div>
+            <label style="width: 4ch;"></label>
+            <button type="button" class="btn btn-lg btn-outline-success" onclick="window.open('/task/list', '_self')">
+                分析数据
+            </button>
+        </div>
+    </div>
+    <div class="row alert justify-content-center">
+        <div class="col-md-8">
+            <p class="lead">软件简介</p>
+            <p>
+                环境保护机构会投入各项资金, 用以防治环境污染和修复生态. 本软件通过分析环境保护机构在各方面的投入和各种环境治理指标, 评价
+                环境保护支出产生的绩效. 本软件还根据一个环境保护机构的历史数据, 预测其下一年的绩效.
+            </p>
+            <p class="lead">绩效评价</p>
+            <p><b>基于数据包络分析的绩效评价</b></p>
+            <p>
+                本软件使用<a href="https://en.wikipedia.org/wiki/Data_envelopment_analysis">数据包络分析</a>模型, 根据
+                投入和产出分析每个样本的绩效. 一个样本对应一个环境保护机构(地区)在一个报告期(一年)中的表现, 其中有多个投入变量和产出变量.
+            </p>
+            <p><b>基于BHT-ARIMA的绩效预测</b></p>
+            <p>
+                本软件将所有样本按环境保护机构划分, 插值到连续的年份. 然后使用
+                <a href="https://github.com/huawei-noah/BHT-ARIMA">BHT-ARIMA</a>模型, 根据历史数据作短时间序列预测, 预测下一
+                年的表现. 每个环境保护机构的数据时间段单独计算.
+            </p>
+            <p>
+                使用者需提前了解参数的含义: (1) ARIMA模型的p, d, q参数
+                (2) BHT-ARIMA模型 multi-way delay embedding transform (MDT) 的时间滞后参数τ. 详见BHT-ARIMA论文的图2.
+            </p>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>

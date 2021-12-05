@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert justify-content-center">
+        <div class="col-md-8">
+            <p class="lead fw-normal text-center">注册</p>
+
+            <p><a data-bs-toggle="modal" data-bs-target="#ratelimit" class="text-primary">了解频率限制</a></p>
+            <!-- Modal -->
+            <div class="modal fade" id="ratelimit" tabindex="-1" aria-labelledby="ratelimitLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">频率限制</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p>1. 每10分钟, 每个IP地址, 最多提交70个注册请求.</p>
+                      <p>2. 每1分钟, 每个被填用户名, 最多提交2次注册请求.</p>
+                      <p>3. 每1分钟, 每个电子邮件地址, 最多提交1次注册请求.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form action="/my_login/register/add" method="post">
+                {{ RegisterSheet.as_p }}
+                <div class="text-center">
+                    <input type="submit" class="btn btn-outline-success" value="发送邮件" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>

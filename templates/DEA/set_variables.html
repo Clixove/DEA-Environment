@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert">
+        <div class="col-md-2 d-flex flex-column justify-content-center">
+            <div class="alert fade shadow show">
+            <p>
+                投入变量视图:
+                <a role="button" class="text-primary" onclick="set_compact('id_names_input')">紧凑</a>
+                <a role="button" class="text-primary" onclick="set_expand('id_names_input')">展开</a>
+            </p>
+            <p>全选
+                <input class="form-check-input" type="checkbox" onchange="check_all(this, 'id_names_input')" />
+            </p>
+                <hr>
+            <p>
+                产出变量视图:
+                <a role="button" class="text-primary" onclick="set_compact('id_names_output')">紧凑</a>
+                <a role="button" class="text-primary" onclick="set_expand('id_names_output')">展开</a>
+            </p>
+            <p>全选
+                <input class="form-check-input" type="checkbox" onchange="check_all(this, 'id_names_output')" />
+            </p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <p class="lead fw-normal text-center">设置变量</p>
+            <p class="text-end"><a href="/task/add-2?index={{ task.id }}">下一步</a> </p>
+            <form id="set-variable">
+                {{ set_variable_sheet.as_p }}
+                <div class="text-center">
+                    <input type="submit" value="提交" class="btn btn-outline-success">
+                </div>
+            </form>
+            <div class="alert alert-warning" hidden id="set-variable-await">
+                已开始运行绩效评价模型, 等待模型运行时既可留在本页, 也可离开软件.
+            </div>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>
+
+<script>
+    set_compact('id_names_input');
+    set_compact('id_names_output');
+    $('#set-variable').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/dea/set-variable',
+            data: $(this).serialize(),
+            success: (redirect_url) => {window.open(redirect_url, '_self')},
+        });
+        document.getElementById('set-variable-await').hidden = false;
+    });
+</script>

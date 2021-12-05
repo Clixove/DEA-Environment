@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert justify-content-center">
+        <div class="col-md-8">
+            <p class="lead fw-normal text-center">查看绩效预测</p>
+            <p class="d-flex justify-content-between">
+                <a href="/task/add-3?index={{ task.id }}">上一步</a>
+                <a href="/bht-arima/download?index={{ task.id }}">下载结果</a>
+            </p>
+            <div style="overflow-x: auto;">{{ prediction | safe }}</div>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>

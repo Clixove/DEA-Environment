@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clixove</title>
+    {% include 'clixove.org/packages.html' %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">{% include 'clixove.org/navigator.html' %}</div>
+    <div class="row alert justify-content-center">
+        <div class="col-md-8">
+            <p class="lead fw-normal text-center">新建任务</p>
+            <form action="/task/add" method="post" class="form" enctype="multipart/form-data">
+                {{ add_task_form.as_p }}
+                <div class="text-center">
+                    <input type="submit" value="提交" class="btn btn-outline-success">
+                </div>
+            </form>
+            <p class="helptext">
+                仅接受 Microsoft Excel (*.xlsx) 格式的数据. 表格的内容请参考
+                <a href="/static/data_pre_processing/data_pre_processing.html" target="_blank">
+                    预处理从CSMAR获取的数据
+                </a>和
+                <a href="/static/data_pre_processing/Chinese Govt Environment Metrics 2007~2019.xlsx" target="_blank">
+                    样例数据
+                </a>.
+            </p>
+        </div>
+    </div>
+    <div class="row">{% include 'clixove.org/copyright.html' %}</div>
+</div>
+</body>
+</html>

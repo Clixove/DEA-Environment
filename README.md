@@ -61,16 +61,16 @@ Follow the instructions in the command line. This user has the highest permissio
 
 ### 5.3. Build static files
 
-Replace `STATICFILES_DIRS = ['templates/static']` with `STATIC_ROOT = 'templates/static'` in `question_go/settings.py`.
+Replace `STATICFILES_DIRS = ['templates/static']` with `STATIC_ROOT = 'templates/static'` in `govt_env_protection_eval_dj/settings.py`.
 
 Run the command: 
 ```
 python manage.py collectstatic
 ```
 
-Replace `STATIC_ROOT = 'templates/static'` with `STATICFILES_DIRS = ['templates/static']` in `question_go/settings.py`.
+Replace `STATIC_ROOT = 'templates/static'` with `STATICFILES_DIRS = ['templates/static']` in `govt_env_protection_eval_dj/settings.py`.
 
-Replace `DEBUG = True` with `DEBUG = False` in `question_go/settings.py`.
+Replace `DEBUG = True` with `DEBUG = False` in `govt_env_protection_eval_dj/settings.py`.
 
 ### 5.4. Administrator's settings
 

@@ -55,8 +55,6 @@ def view_bht_arima(req):
     context = {
         'task': task, 'config_sheet': config_sheet,
     }
-    task.current_step = 3
-    task.save()
     return render(req, 'BHT_ARIMA/bht_config.html', context)
 
 

@@ -3,7 +3,15 @@
 
 ## 1. Background
 
+The performance evaluation of environmental protection expenditure is a "multiple input, multiple output" problem: environmental protection agencies invest different amounts of funds in different projects, and environmental protection achievements are also determined by multiple indicators (different harmful gas emissions, the recycle ratios of different rubbish). In fact, there is no fixed metric (such as rate of return in business fields) to evaluate the performance of environmental protection.
+
+This software is a web application software that evaluates and predicts the performance of environmental protection agencies. This software analyzes multiple input and output indicators, and uses the [DEA algorithm](https://en.wikipedia.org/wiki/Data_envelopment_analysis) to establish a performance indicator. This indicator aims to evaluate the performance of the decision-making unit (environmental protection agencies). This software also uses the BHT-ARIMA algorithm to implement short time series forecasting, to predict the performance of environmental protection agencies in the next year.
+
+This software can help non-statistics users to quickly implement the DEA algorithm and the BHT-ARIMA algorithm proposed by the AAAI 2020 academic conference. It uses the contemporary popular models to calculate the performance of environmental protection expenditures.
+
 ## 2. Functions
+
+Details in [documentation](./doc/基于数据包络分析的环境保护支出绩效评价软件-说明书.docx).
 
 ## 3. Acknowledgement
 
@@ -12,6 +20,10 @@ BHT-ARIMA:
 - Code at https://github.com/huawei-noah/BHT-ARIMA
 
 SourceHanSerifCN Font: https://github.com/wordshub/free-font#%E6%80%9D%E6%BA%90%E5%AE%8B%E4%BD%93
+
+## 4. Software Design
+
+Details in [documentation](./doc/基于数据包络分析的环境保护支出绩效评价软件-说明书.docx).
 
 ## 5. Installation
 

@@ -26,7 +26,7 @@
                     <td class="text-nowrap">
                         <a href="/task/add-{{ task.current_step }}?index={{ task.id }}">{{ task.name }}</a>
                     </td>
-                    <td class="text-nowrap">{{ task.created_time | date:'Y-m-d H:i:j' }}</td>
+                    <td class="text-nowrap">{{ task.created_time | date:'Y-m-d H:i:s' }}</td>
                     <td>
                         {% if task.busy %}
                         <img src="/static/admin/img/icon-no.svg" alt="False">

@@ -100,7 +100,7 @@ python manage.py 0.0.0.0:$port --insecure
 
 The IP address can only be 127.0.0.1 (for local use only) or 0.0.0.0 (for web 
 server), and `port` can be customized. After that, the website will be running
-at `https://example.com:$port`.
+at `https://example.com:$port/main`.
 
 (1) Registry permission
 

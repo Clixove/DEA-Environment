@@ -3,6 +3,8 @@
 
  **This documentation is contains math formulas in Latex format. Please browser it in contemporary markdown software.**
 
+ **Machine translation from Chinese to English by translate.google.com**
+
 ## Introduction
 
 The performance evaluation of environmental protection expenditure is a "multiple input, multiple output" problem: environmental protection agencies invest different amounts of funds in different projects, and environmental protection achievements are also determined by multiple indicators (different harmful gas emissions, the recycle ratios of different rubbish). In fact, there is no fixed metric (such as rate of return in business fields) to evaluate the performance of environmental protection.
@@ -53,7 +55,7 @@ This software uses the BHT-ARIMA algorithm to achieve performance prediction, wh
 
 In performance forecasting, the software inputs the historical performance sequence of each environmental protection agency, and the software predicts the performance of the next year. The forecasting process is shown in the next figure.
 
-![](doc/Pasted image 20220115200854.png)
+![](doc/20220115200854.png)
 
 ## Acknowledgement
 
@@ -67,7 +69,7 @@ BHT-ARIMA Code at [https://github.com/huawei-noah/BHT-ARIMA](https://github.com/
 
 The structure of this software is like following:
 
-![](doc/Performance Evaluation.png)
+![](doc/Performance-Evaluation.png)
 
 **User login:** This module is responsible for the user's login and registration functions. It inherits from the Authorize module of the Django function library and has the function of sending a registration confirmation email to the user.
 

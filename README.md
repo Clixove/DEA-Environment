@@ -19,6 +19,7 @@ The process of software analyzing data is divided into performance evaluation an
 ### 1.  performance evaluation
 
 This software analyzes the performance of environmental protection agencies using the data envelopment analysis algorithm. The input data is a two-dimensional table, where each row represents a sample, which is the data of an environmental protection agency in a certain year. Each column represents 1 original indicator, and the user needs to specify one or more input indicators (such as the amount of environmental protection expenditure), one or more output indicators (such as the removal of industrial sulfur dioxide, the removal of industrial soot, the harmless treatment of domestic waste) Rate). Assuming a total of $N$ samples, the value of the input indicator of a sample i is $y_{i,1},y_{i,2},...,y_{i,k}$, the output indicator is The value is $x_{i,1},x_{i,2},...,x_{i,m}$, the performance of the sample is $θ_i$, then the value of $θ_i$ is the result of optimizing the model.
+
 $$
 \begin{aligned}
 \max & \quad \theta_i = \frac{\sum_{j=1}^k y_{i,j} u_{i,j}}{\sum_{j=1}^m x_{i,j} v_{i,j}} \\
@@ -26,11 +27,15 @@ s.t. & \quad \forall n=1,2,...,N, \quad \theta_n = \frac{\sum_{j=1}^k y_{n,j} u_
 & \quad u_{i,1}, u_{i, 2}, ..., u_{i,k}, v_{i,1}, v_{i,2}, ..., v_{i, m} \geq 0
 \end{aligned}
 $$
+
 Model linearization: Using the properties of 
+
 $$
 \frac{a}{b} \leq 1 \quad and \quad a,b \geq 0 \quad \Leftrightarrow \quad a-b \leq 0,
 $$
+
 the model can be transformed into the next equation,
+
 $$
 \begin{aligned}
 \max & \quad \theta_i = \sum_{j=1}^k y_{i,j}u_{i,j} \\
@@ -39,6 +44,7 @@ s.t. & \quad \forall n=1,2,...,N, \sum_{j=1}^k y_{n,j}u_{n,j} - \sum_{j=1}^m x_{
 & \quad u_{i,1}, u_{i, 2}, ..., u_{i,k}, v_{i,1}, v_{i,2}, ..., v_{i, m} \geq 0
 \end{aligned}
 $$
+
 where u, v are the internal parameters of the model, representing the weight of each input and output indicator on each sample. According to the linear programming results of this model, the performance of each sample can be obtained, and the performance value is between 0 and 1, regardless of the dimensions of the input and output indicators.
 
 ### 2. performance prediction
@@ -61,7 +67,7 @@ BHT-ARIMA Code at [https://github.com/huawei-noah/BHT-ARIMA](https://github.com/
 
 The structure of this software is like following:
 
-![[Performance Evaluation.png]]
+![](doc/Performance Evaluation.png)
 
 **User login:** This module is responsible for the user's login and registration functions. It inherits from the Authorize module of the Django function library and has the function of sending a registration confirmation email to the user.
 

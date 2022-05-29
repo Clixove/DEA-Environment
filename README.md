@@ -1,4 +1,4 @@
-# Environment Protection DEA
+# DEA
  DEA Analysis of Environment Protection Investment
 
  **This documentation is contains math formulas in Latex format. Please browser it in contemporary markdown software.**
@@ -14,7 +14,7 @@ performance of environmental protection agencies. This software analyzes multipl
 
 This software can help non-statistics users to quickly implement the DEA algorithm and the BHT-ARIMA algorithm proposed by the AAAI 2020 academic conference. It uses the contemporary popular models to calculate the performance of environmental protection expenditures.
 
-## Function
+## Functions
 
 The process of software analyzing data is divided into performance evaluation and performance prediction: in the first step, the user uploads the data set, sets the input and output variables, and the software uses the data envelopment analysis algorithm to establish performance evaluation indicators. In the second step, the software extracts the year and the name of the environmental protection agency from the data set, and based on the calculated performance, uses the BHT-ARIMA algorithm to predict the performance of each environmental protection agency in the next year.
 
@@ -57,7 +57,7 @@ In performance forecasting, the software inputs the historical performance seque
 
 ![](doc/20220115200854.png)
 
-## Acknowledgement
+## Citation
 
 BHT-ARIMA Paper at [https://arxiv.org/abs/2002.12135](https://arxiv.org/abs/2002.12135)
 
@@ -83,16 +83,19 @@ The structure of this software is like following:
 
 The current folder of command line is the software's project root.
 
-### 1. Create token
+**Use Django token.**
 
-Create a `token/` in project root, and include the following files in it.
+Generate the following structure of files in project root, and include the following files in it.
 
-(1) `django_secret_key`: There should be a string about 52 characters, being a secret key for 
-communication between client and web server. The string can be generated in [Djecrety](https://djecrety.ir/) website.
+```
+token/
+token/django_secret_key
+token/smtp.json
+```
 
-(2) `smtp.json`: If you don't use a registration confirming service by email, `smtp.json` is not necessary. At the same time, you should disable registry related links in `govt_env_protection_eval_dj/urls.py`.
+*Notice the email registry module is outdated. For developers, please use "my_login" module in Question-Go repository and make proper modifications. For end users, please contact the author to obtain technical supprt.*
 
-There should be the config of web maintainer's email sender in this file. The format is:
+`django_secret_key` is a plain text file which contains a token, generated at [Djecrety](https://djecrety.ir/) or a random string of 52 characters. `smtp.json` is the configuration file of emal registry module, using the following format.
 
 ```json
 {
@@ -103,39 +106,35 @@ There should be the config of web maintainer's email sender in this file. The fo
 }
 ```
 
-### 2. Python environment
+**Install Python environment.**
 
-Install required Python packages:
+Install required Python packages.
 
 ```
 pip install -r requirements.txt
 ```
 
-It is a maximum required package. With the environment, all functions can be used, but not all functions are necessary.
+*It is a maximum required package. With the environment, all functions can be used, but not all functions are necessary.*
 
-Navigate to the project folder, and create the database and superuser:
+Navigate to the project folder, and create the database and superuser.
 
 ```
 python manage.py migrate
 python manage.py createsuperuser
 ```
 
-Follow the instructions in the command line. This user has the highest permission in this software.
+Follow the instructions in the command line to create the super administrator.
 
-### 3. Administrator's settings
-
-Run the command: 
+Start the website with the following command, where `$port` should be replaced with customized port number.
 
 ```
 python manage.py 0.0.0.0:$port --insecure
 ```
 
-The IP address can only be 127.0.0.1 (for local use only) or 0.0.0.0 (for web server), and `port` can be customized. After that, the website will be running at `https://example.com:$port/main`.
+Visit `https://example.com:$port/main` to preview the index page, and visit `https://example.com:$port/admin` to configure registry permission.
 
-(1) Registry permission
+**Administrator's configuration.**
 
-1. Visit `https://example.com:$port/admin`. 
-2. Create at least one group instance, for example, named "Free plan" and  users can freely register into.
-3. Create a register group instance, and link to "Free plan".
-4. Add proper permissions to "Free plan", at least including: "add, change, view Register", "add, delete, change, view Task", "add, delete, change, view AsyncErrorMessage", and   "add, delete, change, view Column".
+Create at least one user group. Basically, user permissions should include "add, change, view Register", "add, delete, change, view Task", "add, delete, change, view AsyncErrorMessage", and   "add, delete, change, view Column".
 
+Create a register group, and link to proper user groups.

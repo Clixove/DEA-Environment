@@ -1,8 +1,6 @@
 # DEA
  DEA Analysis of Environment Protection Investment
 
- **This documentation is contains math formulas in Latex format. Please browser it in contemporary markdown software.**
-
  **Machine translation from Chinese to English by translate.google.com**
 
 ## Introduction

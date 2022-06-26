@@ -1,4 +1,5 @@
 # DEA Environment
+
  Evaluating the efficiency of environmental protection policies based on data enveloping analysis
 
  **Machine translation from Chinese to English by translate.google.com**
@@ -18,7 +19,10 @@ The process of software analyzing data is divided into performance evaluation an
 
 ### 1.  performance evaluation
 
-This software analyzes the performance of environmental protection agencies using the data envelopment analysis algorithm. The input data is a two-dimensional table, where each row represents a sample, which is the data of an environmental protection agency in a certain year. Each column represents 1 original indicator, and the user needs to specify one or more input indicators (such as the amount of environmental protection expenditure), one or more output indicators (such as the removal of industrial sulfur dioxide, the removal of industrial soot, the harmless treatment of domestic waste) Rate). Assuming a total of $N$ samples, the value of the input indicator of a sample i is $y_{i,1},y_{i,2},...,y_{i,k}$, the output indicator is The value is $x_{i,1},x_{i,2},...,x_{i,m}$, the performance of the sample is $θ_i$, then the value of $θ_i$ is the result of optimizing the model.
+This software analyzes the performance of environmental protection agencies using the data envelopment analysis algorithm. The input data is a two-dimensional table, where each row represents a sample, which is the data of an environmental protection agency in a certain year. Each column represents 1 original indicator, and the user needs to specify one or more input indicators (such as the amount of environmental protection expenditure), one or more output indicators (such as the removal of industrial sulfur dioxide, the removal of industrial soot, the harmless treatment of domestic waste) Rate). Assuming a total of $N$ samples, the value of the output indicators of a sample $i$ are $y_{i,1},y_{i,2},...,y_{i,k}$, and the input indicators are $x_{i,1},x_{i,2},...,x_{i,m}$.
+
+The performance of the sample is $θ_i$, which is the result of optimization.
+
 
 $$
 \begin{aligned}
